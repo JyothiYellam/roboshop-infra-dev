@@ -6,5 +6,5 @@ dnf install ansible -y
 cd /home/ec2-user
 git clone  https://github.com/JyothiYellam/ansible-roboshop-roles-terraform.git
 
-cd ansible-roboshop-roles-tf
+cd ansible-roboshop-roles-terraform
 ansible-playbook -e component=$component roboshop.yaml
