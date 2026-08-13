@@ -8,4 +8,4 @@ git clone  https://github.com/JyothiYellam/ansible-roboshop-roles-terraform.git
 
 cd ansible-roboshop-roles-terraform
 git pull
-ansible-playbook -e component=$component roboshop.yaml
+ansible-playbook -e component=$component -e env=$env roboshop.yaml
