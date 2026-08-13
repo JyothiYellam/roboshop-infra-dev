@@ -1,11 +1,12 @@
 #!/bin/bash
 
 component=$1
-dnf install ansible -y  
+environment=$2
+dnf install ansible -y
 
 cd /home/ec2-user
-git clone  https://github.com/JyothiYellam/ansible-roboshop-roles-terraform.git
+git clone https://github.com/daws-88s/ansible-roboshop-roles-tf.git
 
-cd ansible-roboshop-roles-terraform
+cd ansible-roboshop-roles-tf
 git pull
-ansible-playbook -e component=$component -e env=$env roboshop.yaml
+ansible-playbook -e component=$component -e env=$environment roboshop.yaml
