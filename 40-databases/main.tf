@@ -1,7 +1,7 @@
 resource "aws_instance" "mongodb" {
   ami           = local.ami_id
   instance_type = "t3.micro"
-  subnet_id = local.database_subnet_ids
+  subnet_id = local.database_subnet_id
   vpc_security_group_ids = [local.mongodb_sg_id]
 
   tags = merge(
@@ -40,7 +40,7 @@ resource "terraform_data" "mongodb" {
 resource "aws_instance" "redis" {
   ami           = local.ami_id
   instance_type = "t3.micro"
-  subnet_id = local.database_subnet_ids
+  subnet_id = local.database_subnet_id
   vpc_security_group_ids = [local.redis_sg_id]
 
   tags = merge(
@@ -79,7 +79,7 @@ resource "terraform_data" "bootstrap_redis" {
 resource "aws_instance" "mysql" {
   ami           = local.ami_id
   instance_type = "t3.micro"
-  subnet_id = local.database_subnet_ids
+  subnet_id = local.database_subnet_id
   vpc_security_group_ids = [local.mysql_sg_id]
   iam_instance_profile = aws_iam_instance_profile.mysql.name
 
@@ -119,7 +119,7 @@ resource "terraform_data" "mysql" {
 resource "aws_instance" "rabbitmq" {
   ami           = local.ami_id
   instance_type = "t3.micro"
-  subnet_id = local.database_subnet_ids
+  subnet_id = local.database_subnet_id
   vpc_security_group_ids = [local.rabbitmq_sg_id]
 
   tags = merge(
