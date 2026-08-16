@@ -10,7 +10,7 @@ resource "aws_alb" "backend_alb" {
 
     tags = merge(
         {
-            Name =  "${var.project}/${var.environment}"
+            Name =  "${var.project}-${var.environment}"
         },
         local.common_tags
     )
@@ -35,7 +35,7 @@ resource "aws_lb_listener" "http" {
 
  resource "aws_route53_record" "www" {
     zone_id = var.zone_id
-    name = "*.backend-alb-${var.environemnt}.${var.domain_name}"
+    name = "*.backend-alb-${var.environment}.${var.domain_name}"
     type = "A"
 
     # loadbalancer details
