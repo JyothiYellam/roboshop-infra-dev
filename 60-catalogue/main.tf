@@ -33,6 +33,6 @@ resource "terraform_data" "catalogue" {
     inline = [
         "chmod +x /tmp/bootstrap.sh",
         "sudo sh /tmp/bootstrap.sh catalogue dev"
-  }
+    ]
 }
 
