@@ -123,7 +123,7 @@ resource "aws_launch_template" "catalogue" {
   }
 
   
-  vpc_zone_identifier       = [local.private_subnet_id]
+  vpc_zone_identifier       = [local.private_subnet_ids]
   target_group_arns = [aws_lb_target_group.catalogue.arn]
 
   instance_refresh {
@@ -167,7 +167,7 @@ resource "aws_autoscaling_policy" "catalogue" {
 }
 
 resource "aws_lb_listener_rule" "catalogue" {
-  listener_arn = local.backend_alb_listener_rn
+  listener_arn = local.backend_alb_listener_arn
   priority = 10
   action {
     type = "forward"
@@ -186,7 +186,7 @@ resource "terraform_data" "catalogue_delete" {
     ]
     depends_on = [aws_autoscaling_policy.catalogue]
     provisioner "local-exec" {
-      command = "aws_ec2 terminate-instances ${aws_instance.catalogue.id}"
+      command = "aws_ec2 terminate-instances --instance_ids ${aws_instance.catalogue.id}"
     }
 }
 
