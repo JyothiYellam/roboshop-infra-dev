@@ -62,7 +62,7 @@ resource "aws_lb_target_group" "catalogue" {
   vpc_id = local.vpc_id
   deregistration_delay = 60
   health_check  {
-    healthy_threshold = 20
+    healthy_threshold = 2
     interval  = 10
     matcher = "200-299"
     path = "/health"
@@ -166,7 +166,7 @@ resource "aws_autoscaling_policy" "catalogue" {
   }
 }
 
-resource "aws_alb_listner_rule" "catalogue" {
+resource "aws_lb_listener_rule" "catalogue" {
   listener_arn = local.backend_alb_listener_rn
   priority = 10
   action {
