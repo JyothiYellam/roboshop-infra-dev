@@ -28,7 +28,7 @@ resource "aws_lb_listener" "https" {
 
         fixed_response {
         content_type =  "text/html"
-        message_body = "<h1>Hi, I am from HTTP frontend ALB</h1>"
+        message_body = "<h1>Hi, I am from HTTPS frontend ALB</h1>"
         status_code = "200"
         }
     }
@@ -37,7 +37,7 @@ resource "aws_lb_listener" "https" {
 
  resource "aws_route53_record" "www" {
     zone_id = var.zone_id
-    name = "*.frontend-alb-${var.environment}.${var.domain_name}"
+    name = "*.${var.domain_name}"
     type = "A"
 
     # loadbalancer details
@@ -46,6 +46,7 @@ resource "aws_lb_listener" "https" {
         zone_id =  aws_lb.frontend_alb.zone_id
         evaluate_target_health = true
     }
+    allow_overwrite = true
  }
  
  
